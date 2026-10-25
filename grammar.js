@@ -11,15 +11,15 @@ const mustQs = id => GU(id).qs.filter(q => /must/i.test(q.text + ' ' + (q.answer
 /* ---------- 1. Object pronouns ---------- */
 const SWAP = [
   ['Please help', 'Mum', '.', 'her'], ['I like', 'my brother', '.', 'him'], ['Look at', 'the birds', '!', 'them'],
-  ['Can you see', 'the kite', '?', 'it'], ['Come and play with', 'Ruby and me', '!', 'us'], ['Dad gives', 'Mimi', ' a hug.', 'her'],
+  ['Can you see', 'the kite', '?', 'it'], ['Come and play with', 'Susu and me', '!', 'us'], ['Dad gives', 'Neko', ' a hug.', 'her'],
   ['Tom is with', 'Grandpa', '.', 'him'], ["Don't touch", 'the piano', '!', 'it'], ['Mum reads a story to', 'my sister and me', '.', 'us'],
   ["I can't find", 'my glasses', '.', 'them'], ['Say hello to', 'Miss Chan', '.', 'her'], ['Give the ball to', 'Ben', '.', 'him'],
-  ['The teacher talks to', 'the children', '.', 'them'], ['I love', 'my cat', '.', 'it'], ['Please wait for', 'Mimi and me', '!', 'us'],
+  ['The teacher talks to', 'the children', '.', 'them'], ['I love', 'my cat', '.', 'it'], ['Please wait for', 'Neko and me', '!', 'us'],
   ['Throw the ball to', 'Peter', '.', 'him'], ['Put', 'the books', ' on the shelf.', 'them'], ['We sing a song for', 'Grandma', '.', 'her'],
 ];
 const swapQ = ([a, n, b, p]) => MC(`${a} ${n}${b}`, p, shuffle(['me', 'us', 'you', 'him', 'her', 'it', 'them'].filter(x => x !== p)).slice(0, 3), `${n} → ${p}`);
 const OP_EXTRA = [
-  MC('Ruby and Mimi are my friends. I play with ___ every day.', 'them', ['they', 'us']),
+  MC('Susu and Neko are my friends. I play with ___ every day.', 'them', ['they', 'us']),
   MC("Where is Dad? I can't see ___.", 'him', ['he', 'her']),
   MC("I'm hungry. Please give ___ an apple.", 'me', ['I', 'us']),
   MC('___ are hungry.', 'We', ['Us', 'Them'], 'At the start of a sentence, use the subject: We.'),
@@ -103,19 +103,19 @@ const missQs = id => GU(id).words.filter(([w]) => /^[a-z]{4,}$/i.test(w)).map(([
 });
 
 const TOPICS = [
-  { id: 'op', n: 1, title: 'Object pronouns', tag: 'Item 1 · Grammar Time U10', sub: 'me · us · you · them · him · her · it', emo: '🙋‍♀️', col: 'c-pink', guide: 'mimi',
-    hello: "Hi, I'm Mimi! After a verb or a little word like with or to, we use me, us, you, him, her, it or them.",
+  { id: 'op', n: 1, title: 'Object pronouns', tag: 'Item 1 · Grammar Time U10', sub: 'me · us · you · them · him · her · it', emo: '🙋‍♀️', col: 'c-pink', guide: 'neko',
+    hello: "Hi, I'm Neko! After a verb or a little word like with or to, we use me, us, you, him, her, it or them.",
     learn: GU('g10').learn, qs: [...GU('g10').qs, ...OP_EXTRA], game: ['swap', '🔄 Swap it!'] },
-  { id: 'pp', n: 2, title: 'Prepositions', tag: 'Item 2 · GT U6 · WB 2A U1–2', sub: 'in · on · at · under · behind · next to · between', emo: '📦', col: 'c-sky', guide: 'ruby',
-    hello: "Hi, I'm Ruby! We say on the first floor, at the bus stop, on the platform and in the cinema.",
+  { id: 'pp', n: 2, title: 'Prepositions', tag: 'Item 2 · GT U6 · WB 2A U1–2', sub: 'in · on · at · under · behind · next to · between', emo: '📦', col: 'c-sky', guide: 'susu',
+    hello: "Hi, I'm Susu! We say on the first floor, at the bus stop, on the platform and in the cinema.",
     learn: [...PP_LEARN, ...GU('g6').learn], qs: [...GU('g6').qs, ...PP_EXTRA, ...prepQs('rev1'), ...prepQs('u2')], game: ['kitty', '🐱 Where is Kitty?'], game2: ['sort', '🧺 at · on · in'] },
-  { id: 'mm', n: 3, title: "must and mustn't", tag: 'Item 3 · GT U19 · WB 2A U2', sub: 'Rules for public places', emo: '🚦', col: 'c-mint', guide: 'ruby',
+  { id: 'mm', n: 3, title: "must and mustn't", tag: 'Item 3 · GT U19 · WB 2A U2', sub: 'Rules for public places', emo: '🚦', col: 'c-mint', guide: 'susu',
     hello: "Let's follow the rules! Must means we have to do it. Mustn't means don't do it!",
     learn: [...MM_LEARN, ...GU('g19').learn.slice(0, 2), ...GU('u2').learn.slice(0, 2)], qs: [...mustQs('g19'), ...mustQs('u2'), ...MM_EXTRA], game: ['light', '🚦 Green or red?'] },
-  { id: 'sp1', n: 4, title: 'Places at school', tag: 'Item 4 · Spelling · PLE 2A U1', sub: 'classroom · library · corridor …', emo: '🏫', col: 'c-butter', guide: 'mimi', spell: 'u1',
+  { id: 'sp1', n: 4, title: 'Places at school', tag: 'Item 4 · Spelling · PLE 2A U1', sub: 'classroom · library · corridor …', emo: '🏫', col: 'c-butter', guide: 'neko', spell: 'u1',
     hello: 'Listen, look and spell! Tap a card to hear the word.', words: GU('u1').words, qs: [...spellQs('u1'), ...missQs('u1')] },
-  { id: 'sp2', n: 4, title: 'Rules words', tag: 'Item 4 · Spelling · PLE 2A U2', sub: 'litter · spit · push · platform …', emo: '🚏', col: 'c-peach', guide: 'ruby', spell: 'u2',
+  { id: 'sp2', n: 4, title: 'Rules words', tag: 'Item 4 · Spelling · PLE 2A U2', sub: 'litter · spit · push · platform …', emo: '🚏', col: 'c-peach', guide: 'susu', spell: 'u2',
     hello: 'These words help us talk about rules. Can you spell them?', words: GU('u2').words, qs: [...spellQs('u2'), ...missQs('u2')] },
-  { id: 'sp3', n: 4, title: 'Seasons and weather', tag: 'Item 4 · Spelling · PLE 2B U7', sub: 'spring · summer · autumn · winter …', emo: '🌦️', col: 'c-lav', guide: 'mimi', spell: 'u7',
+  { id: 'sp3', n: 4, title: 'Seasons and weather', tag: 'Item 4 · Spelling · PLE 2B U7', sub: 'spring · summer · autumn · winter …', emo: '🌦️', col: 'c-lav', guide: 'neko', spell: 'u7',
     hello: 'Spring, summer, autumn, winter! Let\'s spell the weather words.', words: GU('u7').words, qs: [...spellQs('u7'), ...missQs('u7')] },
 ];

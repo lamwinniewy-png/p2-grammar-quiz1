@@ -1,4 +1,4 @@
-/* Ruby & Mimi's Grammar Garden — P.2 Grammar Quiz 1 revision. Vanilla JS, iPad-friendly, natural recorded voice + device voice fallback */
+/* Susu & Neko's Grammar Garden — P.2 Grammar Quiz 1 revision. Vanilla JS, iPad-friendly, natural recorded voice + device voice fallback */
 'use strict';
 
 /* ---------------- helpers ---------------- */
@@ -94,18 +94,18 @@ function starsOf(id) { const b = S.best[id]; if (b == null) return '☆☆☆'; 
 function daysLeft() { const exam = new Date(2026, 10, 3); const now = new Date(); now.setHours(0, 0, 0, 0); return Math.round((exam - now) / 864e5); }
 const card = (t, tag, sub, extra = '') => `<button class="topic-card ${t.col}" data-topic="${t.id}"><div><span class="tag">${tag}</span><h3>${t.title}</h3><p>${sub}</p></div><div class="stars">${extra || starsOf(t.id)}</div><span class="pic emo-badge">${t.emo}</span></button>`;
 const CLOUDS = `<div class="sky" aria-hidden="true"><span class="c1">🎀</span><span class="c2">💜</span><span class="c3">🌸</span></div>`;
-const GUIDE = { ruby: 'Ruby', mimi: 'Mimi' };
+const GUIDE = { susu: 'Susu', neko: 'Neko' };
 
 function home() {
   const d = daysLeft();
   const tcard = t => `<button class="topic-card ${t.col}" data-topic="${t.id}"><div><span class="tag">${t.tag}</span><h3>${t.title}</h3><p>${t.sub}</p></div><div class="stars">${starsOf(t.id)}</div><span class="pic guide-pic"><img src="img/${t.guide}-head.webp" alt=""></span></button>`;
   view(`
   <section class="hero">${CLOUDS}
-    <div class="hero-duo bob"><img src="img/duo.webp" alt="Ruby and Mimi waving"></div>
+    <div class="hero-duo bob"><img src="img/duo.webp" alt="Susu and Neko waving"></div>
     <div class="hero-txt">
       <p class="kicker">Grammar Quiz 1 · P.2</p>
-      <h1>Ruby &amp; Mimi's Grammar Garden</h1>
-      <p class="sub">Learn, play games and practise for your grammar quiz with Ruby and Mimi.</p>
+      <h1>Susu &amp; Neko's Grammar Garden</h1>
+      <p class="sub">Learn, play games and practise for your grammar quiz with Susu and Neko.</p>
       ${d > 0 ? `<div class="countdown">Grammar Quiz 1: <b>Tue 3 November</b> (Day 4) · <span>${d}</span> day${d === 1 ? '' : 's'} to go</div>` : d === 0 ? '<div class="countdown">Quiz day today. You can do it!</div>' : '<div class="countdown">Keep practising. Great job!</div>'}
       <div class="voice-note">🔈 Tap the speaker or any sentence to hear it.</div>
     </div>
@@ -125,7 +125,7 @@ function home() {
     <button class="topic-card c-pink" id="listenBtn"><div><span class="tag">10 questions</span><h3>Listen &amp; choose</h3><p>Hear a word, pick the right one</p></div><div class="stars">${S.best.listen != null ? 'Best: ' + S.best.listen + ' / 10' : ''}</div><span class="pic emo-badge">👂</span></button>
     <button class="topic-card c-butter" id="mistakeBtn"><div><span class="tag">${S.mistakes.length} question${S.mistakes.length === 1 ? '' : 's'}</span><h3>Mistake book</h3><p>Try your mistakes again</p></div><span class="pic emo-badge">📒</span></button>
   </div>
-  <p class="foot">Revision for Grammar Quiz 1 · Grammar Time Units 6, 10, 19 · Workbook 2A Units 1–2 · P.L.E. 2A Units 1–2, 2B Unit 7. Ruby and Mimi are drawn from our own two dolls.</p>`);
+  <p class="foot">Revision for Grammar Quiz 1 · Grammar Time Units 6, 10, 19 · Workbook 2A Units 1–2 · P.L.E. 2A Units 1–2, 2B Unit 7. Susu and Neko are drawn from our own two dolls.</p>`);
   app.querySelectorAll('[data-topic]').forEach(b => b.onclick = () => { sTap(); topic(b.dataset.topic); });
   app.querySelectorAll('[data-g]').forEach(b => b.onclick = () => { sTap(); game(b.dataset.g); });
   $('#mockBtn').onclick = () => startQuiz('mock');
@@ -246,10 +246,10 @@ function readingPage(t) {
 /* ================= GAMES ================= */
 const GAME_LEN = { swap: 10, kitty: 10, sort: 12, light: 10 };
 const GAME_INFO = {
-  swap: { title: 'Swap it!', tag: 'Item 1 · Object pronouns', guide: 'mimi', topic: 'op', how: 'Swap the pink words for ONE little word: me, us, you, him, her, it or them.' },
-  kitty: { title: 'Where is Kitty?', tag: 'Item 2 · Prepositions', guide: 'ruby', topic: 'pp', how: 'Look at the picture. Where is it? Tap the right word.' },
-  sort: { title: 'at · on · in', tag: 'Item 2 · Prepositions for places', guide: 'ruby', topic: 'pp', how: 'Put each place in the right basket: at, on or in.' },
-  light: { title: 'Green or red?', tag: "Item 3 · must and mustn't", guide: 'mimi', topic: 'mm', how: "Is it a good thing to do? Green for must, red for mustn't!" },
+  swap: { title: 'Swap it!', tag: 'Item 1 · Object pronouns', guide: 'neko', topic: 'op', how: 'Swap the pink words for ONE little word: me, us, you, him, her, it or them.' },
+  kitty: { title: 'Where is Kitty?', tag: 'Item 2 · Prepositions', guide: 'susu', topic: 'pp', how: 'Look at the picture. Where is it? Tap the right word.' },
+  sort: { title: 'at · on · in', tag: 'Item 2 · Prepositions for places', guide: 'susu', topic: 'pp', how: 'Put each place in the right basket: at, on or in.' },
+  light: { title: 'Green or red?', tag: "Item 3 · must and mustn't", guide: 'neko', topic: 'mm', how: "Is it a good thing to do? Green for must, red for mustn't!" },
 };
 const PETS = ['🐱', '🐶', '🐰', '🧸', '⚽', '🐹'];
 const PET_NAME = { '🐱': 'Kitty', '🐶': 'the puppy', '🐰': 'the bunny', '🧸': 'the teddy', '⚽': 'the ball', '🐹': 'the hamster' };
@@ -487,7 +487,7 @@ function showQ() {
 function showFixed(q) {
   app.querySelectorAll('.fword').forEach(b => { b.disabled = true; if (+b.dataset.f === q.bad) { b.classList.remove('wrong'); b.classList.add('right'); b.innerHTML = `<s>${esc(q.words[q.bad])}</s> ${esc(q.fix)}`; } });
   const r = $('#fixrow'); r && r.insertAdjacentHTML('afterend', `<p class="fixed">✓ ${q.words.map((w, i) => i === q.bad ? `<mark>${esc(q.fix)}</mark>` : esc(w)).join(' ')}</p>`);
-  if (!Q.exam) synth(q.answer);
+  if (!Q.exam) say(q.answer);
 }
 const correctText = q => q.type === 'multi' ? q.answers.join(', ') : q.answer;
 
@@ -507,7 +507,7 @@ function answer(ok, btn, given) {
     sGood(); if (first) confetti();
     popText(pick(['Well done!', 'Great job!', 'Super!', 'Brilliant!', 'Correct!']));
     fb.innerHTML = Q.exam ? '' : `<div class="feedback good">${MASCOT.wink}<div>${first ? 'Correct! +1 ★' : 'Correct! Next time, first try!'}${q.explain ? `<div class="exp">${esc(q.explain)}</div>` : ''}</div></div>`;
-    if (!Q.exam && q.type === 'order') synth(q.answer);
+    if (!Q.exam && q.type === 'order') say(q.answer);
     Q.log.push({ q, ok: first });
     if (q.fromMist && first) S.mistakes = S.mistakes.filter(m => keyOf(m) !== keyOf(q));
     checkSticker(); save();

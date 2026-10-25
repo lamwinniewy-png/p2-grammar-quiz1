@@ -1,4 +1,4 @@
-# Ruby & Mimi's Grammar Garden · P.2 Grammar Quiz 1
+# Susu & Neko's Grammar Garden · P.2 Grammar Quiz 1
 
 An iPad-friendly revision site for a Primary 2 grammar quiz (3 November, Day 4).
 
